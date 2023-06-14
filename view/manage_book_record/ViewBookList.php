@@ -1,10 +1,31 @@
+<?php
+	$conn = mysqli_connect("localhost", "root", "", "lms_db");
+	
+	if(!$conn) 
+	{ 
+		die(" Connection Error "); 
+	}
+	
+	$query = "SELECT Book_title, 
+				Book_author, 
+                Book_desc,
+				publication_date, 
+				totalPages, 
+				ISBN, 
+				Book_rating 
+				FROM book";
+	
+	$result = mysqli_query($conn, $query);
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Manage Book Record</title>
+  <title>Book List</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -24,6 +45,109 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  
+  <style>
+	input[type=text] 
+	{
+	  width: 100%;
+	  padding: 10px;
+	}
+	
+	td
+	{
+		text-align: center;
+	}
+  
+	#list th, #list td 
+	{
+	  border: 3px solid black;
+	  border-collapse: collapse;
+	  background: white;
+	  padding: 5px;
+	}
+
+	#list th 
+	{
+	  background-color: #ffd503;
+	  color: white;
+	}
+	
+	#list tr:nth-child(even)
+	{
+	  background-color: #f2f2f2;
+	}
+	
+	#list tr:hover 
+	{
+	  background-color: #ddd;
+	}
+	
+	#searchButton
+	{
+	  width: 100%;
+	  font-size: 20px;
+	  padding: 7px;
+	  border: 1px solid #ddd;
+	}
+	
+	#greenlinks:link, #greenlinks:visited 
+	{
+	  background-color: #00aea6;
+	  color: white;
+	  padding: 6px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	}
+
+	#greenlinks:hover, #greenlinks:active 
+	{
+	  background-color: #ffd600;
+	  color: black;
+	}
+	
+	#redlinks:link, #redlinks:visited 
+	{
+	  background-color:#eb2d53;
+	  color: white;
+	  padding: 6px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	}
+
+	#redlinks:hover, #redlinks:active 
+	{
+	  background-color: #ffd600;
+	  color: black;
+	}
+	
+	input[type=text]
+	{
+	  width: 75%;
+	  padding: 10px;
+	}
+	
+	.searchButton
+	{
+		width: 20%;
+		padding: 10px;
+	}
+	
+	.my-custom-scrollbar
+	{
+		position: left;
+		height: 350px;
+		overflow: auto;
+	}
+	
+  .table-wrapper-scroll-y
+	{
+		display: block;
+	}
+  </style>
 
 </head>
 
@@ -36,8 +160,7 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
           <h1 class="logo"><a href="../login/librarian.php">Library Management System</a></h1>
-			
-		  <!-- navigation bar -->
+
           <nav id="navbar" class="navbar">
             <ul>
               <li><a href="../login/librarian.php">Home</a></li>
@@ -57,7 +180,7 @@
               </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-          </nav>
+          </nav><!-- .navbar -->
         </div>
       </div>
 
@@ -66,75 +189,65 @@
 
   <section id="hero">
     <div class="hero-container">
-
         <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
-
         <div class="carousel-inner" role="listbox">
-
           <div class="carousel-item active" style="background-image: url(assets/img/book/book1.jpg)">
             <div class="carousel-container">
               <div class="container">
-                <h2 class="animate__animated animate__fadeInDown">Book Record Management</h2>
-                <p class="animate__animated animate__fadeInUp">A place to <br>keep track of <br>all your book records</p>
+                <h2 class="animate__animated animate__fadeInDown">List Of Books</h2>
+				<center>
+				<div class="table-wrapper-scroll-y my-custom-scrollbar">	
+					<!-- list of existing books -->
+					<table class="table table-bordered table-striped mb-0">
+					  <tr id="list">
+						<td style="background-color:#00aea6; color: white"><b>ISBN</b></td>
+						<td style="background-color:#00aea6; color: white"><b>BOOK TITLE</b></td>
+						<td style="background-color:#00aea6; color: white"><b>BOOK AUTHOR</b></td>
+                        <td style="background-color:#00aea6; color: white"><b>BOOK DESCRIPTION</b></td>
+						<td style="background-color:#00aea6; color: white"><b>PUBLICATION DATE</b></td>
+						<td style="background-color:#00aea6; color: white"><b>TOTAL PAGES</b></td>
+						<td style="background-color:#00aea6; color: white"><b>BOOK RATING</b></td>
+					  </tr>
+					  
+					  <?php
+						while($row=mysqli_fetch_assoc($result))
+						{
+							$ISBN = $row['ISBN'];
+							$Book_title = $row['Book_title'];
+							$Book_author = $row['Book_author'];
+                            $Book_desc = $row['Book_desc'];
+							$publication_date = $row['publication_date'];
+							$totalPages = $row['totalPages'];
+							$Book_rating = $row['Book_rating'];
+					  ?> 
+						<tr id="list">
+							<td><?php echo $ISBN ?></td>
+							<td><?php echo $Book_title ?></td>
+							<td><?php echo $Book_author ?></td>
+                            <td><?php echo $Book_desc ?></td>
+							<td><?php echo $publication_date ?></td>
+							<td><?php echo $totalPages ?></td>
+							<td><?php echo $Book_rating ?></td>
+						</tr>
+					  <?php
+						}
+					  ?>
+					
+					</table><br>
+					</div><br><br>
+					
+					<input type="button" value="Back" onclick="location.href='./manage_book_record.php'">
+					<input type="button" value="Add New Book" onclick="location.href='./addBook.php'"><br>
+				</center>
 				
-				<form action="manageBook.php" method="post">	
-					<input type="button" value="Add Book" onclick="location.href='./addBook.php'">
-          <input type="button" value="View Book" onclick="location.href='./ViewBookList.php'">
-          <input type="button" value="Update Book" onclick="location.href='./BookList.php'">
-					<input type="button" value="Delete Book" onclick="location.href='./BookList.php'">
-				</form>
 			  </div>
             </div>
           </div>
+
         </div>
 
     </div>
   </section>
-
-  <main id="main">
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h3>Contact Us</h3>
-        </div>
-
-        <div class="row contact-info">
-
-          <div class="col-md-4">
-            <div class="contact-address">
-              <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <address>Universiti Malaysia Pahang, <br>26600 Pekan Pahang, <br>MALAYSIA</address>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="contact-phone">
-              <i class="bi bi-phone"></i>
-              <h3>Phone Number</h3>
-              <p><a href="tel:+609-4245600">09-424 5600 (P)</a></p>
-			  <p><a href="tel:+609-5493131">09-549 3131 (G)</a></p>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="contact-email">
-              <i class="bi bi-envelope"></i>
-              <h3>Email</h3>
-              <p><a href="mailto:umplibrary@ump.edu.my">umplibrary@ump.edu.my</a></p>
-            </div>
-          </div>
-		  
-        </div>
-
-      </div>
-    </section>
-	<!-- End Contact Section -->
-
-  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -156,8 +269,6 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <!-- Uncomment below i you want to use a preloader -->
-  <!-- <div id="preloader"></div> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
@@ -171,6 +282,22 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <!-- Delete Book Confirmation -->
+  <script>
+  function deleteBook()
+  {
+	if (confirm("All details of the book will be deleted\nAre you sure you want to delete this book?"))
+	{
+		alert("The book has been deleted");
+	}
+	else
+	{
+		alert("Cancelled");
+	}
+  }
+  
+  </script>
 
 </body>
 
