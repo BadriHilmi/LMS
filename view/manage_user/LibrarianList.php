@@ -40,17 +40,12 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-<style>
+  <style>
 
-	input[type=text] 
+input[type=text] 
 	{
 	  width: 100%;
 	  padding: 10px;
-	}
-	
-	table
-	{
-		width: 100%;
 	}
   
 	#list th, #list td 
@@ -58,7 +53,7 @@
 	  border: 3px solid black;
 	  border-collapse: collapse;
 	  background: white;
-	  padding: 10px;
+	  padding: 5px;
 	}
 
 	#list th 
@@ -67,29 +62,21 @@
 	  color: white;
 	}
 	
-	#searchButton
-	{
-	  width: 100%;
-	  font-size: 2px;
-	  padding: 20px;
-	  border: 1px solid #ddd;
-	}
+	#backButton, #addButton{
+  
+	border-radius: 12px;
+	padding: 15px 20px;
+	font-size: 15px;
+    font-color: black;
+	background: #ffd600;
+	text-align: center;
+}
 	
-	#backButton
-	{
-		border-radius: 12px;
-		padding: 15px 20px;
-		font-color: black;
-		background: #ffe033;
-		text-align : center;
-		font-size : 20px;
-	}
-	
-	#backButton:hover
-	{
-		background: black;
-		color: #ffe033;
-	}
+#backButton:hover, #addButton:hover{
+  
+	background: black;
+	color: #ffd600;
+}
 	
 	#greenlinks:link, #greenlinks:visited 
 	{
@@ -103,6 +90,23 @@
 	}
 
 	#greenlinks:hover, #greenlinks:active 
+	{
+	  background-color: #ffd600;
+	  color: black;
+	}
+	
+	#redlinks:link, #redlinks:visited 
+	{
+	  background-color:#eb2d53;
+	  color: white;
+	  padding: 6px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	}
+
+	#redlinks:hover, #redlinks:active 
 	{
 	  background-color: #ffd600;
 	  color: black;
@@ -173,7 +177,7 @@
 						<td style="background-color:#00aea6; color: white"><b>Name</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Phone Number</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Email</b></td>
-						<td colspan="1" style="background-color:#00aea6; color: white"><b>ACTIONS</b></td>
+						<td colspan="2" style="background-color:#00aea6; color: white"><b>ACTIONS</b></td>
 					  </tr>
 					  
 					  <?php
@@ -192,13 +196,15 @@
 							<td><?php echo $phoneNum ?></td>
 							<td><?php echo $Email ?></td>
 							<td><a id="greenlinks" href="LibrarianListDetails.php?GetLibrarian=<?php echo $librarianID ?>">View Details</a></td>
+							<td><a id="redlinks" onclick="DeleteLibrarian()" href="DeleteLibrarianController.php?DeleteLibrarian=<?php echo $librarianID?>" style="background-color: red; color: white; padding: 5px 10px; text-decoration: none;">Delete</a></td>
 						</tr>
 					  <?php
 						}
 					  ?>
 					</table><br>
 					
-					<input type="button" id="backButton" name="Back" value="Back" onclick="location.href='./ManageUser.php'"><br><br>
+					<input type="button" id="backButton" name="Back" value="Back" onclick="location.href='./ManageUser.php'">
+					<input type="button" id="addButton" value="Add New Librarian" name="addButton" onclick="location.href="><br><br><br>
 				</center>
               </div>
             </div>
