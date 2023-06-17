@@ -196,6 +196,7 @@ input[type=text]
 							<td><?php echo $phoneNum ?></td>
 							<td><?php echo $Email ?></td>
 							<td><a id="greenlinks" href="LibrarianListDetails.php?GetLibrarian=<?php echo $librarianID ?>">View Details</a></td>
+							<td><a id="redlinks" onclick="DeleteLibrarian()" href="DeleteLibrarianController.php?DeleteLibrarian=<?php echo $librarianID?>" style="background-color: red; color: white; padding: 5px 10px; text-decoration: none;">Delete</a></td>
 						</tr>
 					  <?php
 						}
