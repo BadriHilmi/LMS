@@ -177,7 +177,7 @@ input[type=text]
 						<td style="background-color:#00aea6; color: white"><b>Name</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Phone Number</b></td>
 						<td style="background-color:#00aea6; color: white"><b>Email</b></td>
-						<td colspan="1" style="background-color:#00aea6; color: white"><b>ACTIONS</b></td>
+						<td colspan="2" style="background-color:#00aea6; color: white"><b>ACTIONS</b></td>
 					  </tr>
 					  
 					  <?php
