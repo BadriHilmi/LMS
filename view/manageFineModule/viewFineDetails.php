@@ -143,7 +143,6 @@
 						<td style="background-color:#00aea6; color: white;"><b>Total Days After Due</b></td>
 						<td style="background-color:#00aea6; color: white;"><b>Fine per day (RM)</b></td>
 						<td style="background-color:#00aea6; color: white;"><b>Total Fine Amount (RM)</b></td>
-						<td style="background-color:#ff0000; color:white"><b>Delete</b></td>
 					  </tr>
 					  
 					
@@ -163,7 +162,7 @@
 							<td><?php echo $days ?></td>
 							<td><?php echo $fine ?></td>
 							<td><?php echo $total ?></td>
-							<td><a id="redlinks" onclick="delete()" href="deleteFineController.php?Delete=<?php echo $id ?>"><b>Delete</b></a></td>
+							
 
 						</tr>
 					  <?php
@@ -220,21 +219,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   
-  <!-- Delete Book Confirmation -->
-  <script>
-  function deleteBook()
-  {
-	if (confirm("All details will be deleted!!!"))
-	{
-		alert("The record has been deleted");
-	}
-	else
-	{
-		alert("Cancelled");
-	}
-  }
-  
-  </script>
+
 
 </body>
 
