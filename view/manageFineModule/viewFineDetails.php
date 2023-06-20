@@ -143,8 +143,8 @@
 						<td style="background-color:#00aea6; color: white;"><b>Total Days After Due</b></td>
 						<td style="background-color:#00aea6; color: white;"><b>Fine per day (RM)</b></td>
 						<td style="background-color:#00aea6; color: white;"><b>Total Fine Amount (RM)</b></td>
-						<td style="background-color:#ff0000; color:white"><b>Delete</b></td>
-					  </tr>
+					  <td style="background-color:#ff0000; color:white"><b>Delete</b></td>
+            </tr>
 					  
 					
 		
@@ -219,7 +219,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
   <!-- Delete Book Confirmation -->
   <script>
   function deleteBook()
@@ -233,8 +232,9 @@
 		alert("Cancelled");
 	}
   }
-  
-  </script>
+  
+  </script>
+
 
 </body>
 
