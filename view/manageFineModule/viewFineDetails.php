@@ -164,7 +164,6 @@
 							<td><?php echo $fine ?></td>
 							<td><?php echo $total ?></td>
 							<td><a id="redlinks" onclick="delete()" href="deleteFineController.php?Delete=<?php echo $id ?>"><b>Delete</b></a></td>
-
 						</tr>
 					  <?php
 						}
