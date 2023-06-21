@@ -221,7 +221,13 @@ $result = mysqli_query($conn, $sql);
               							<td><?php echo $borrower_name ?></td>
               							<td><?php echo $days ?></td>
 										        <td><?php echo $total ?></td>
-              							<td><a id="greenlinks" href="viewReportFine.php?GetFineReport=<?php echo $id ?>">View</a></td>
+                            <td>
+  <a id="greenlinks" href="viewReportFine.php?GetFineReport=<?php echo $id ?>">View</a>
+  <a id="redlinks" href="delete.php?DeleteFineReport=<?php echo $id ?>">Delete</a> 
+</td>
+
+
+                            
 
               						</tr>
               					  <?php
